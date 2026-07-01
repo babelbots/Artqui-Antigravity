@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artqui | Inteligencia Artificial para Arquitectos</title>
+    
+    <!-- Meta Tags para SEO -->
+    <meta name="description" content="Multiplica la productividad y creatividad de tu estudio de arquitectura con Inteligencia Artificial. Formación especializada y servicios de IA delegados.">
+    <meta name="keywords" content="arquitectura, inteligencia artificial, renders ia, midjourney arquitectura, lookx, formacion ia arquitectos, automatizacion arquitectura">
+    
+    <!-- Open Graph (Facebook / LinkedIn) -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Artqui | Inteligencia Artificial para Arquitectos">
+    <meta property="og:description" content="Automatiza renders, acelera diseños y capacita a tu equipo con Inteligencia Artificial especializada en arquitectura.">
+    <meta property="og:image" content="assets/hero.jpg">
+    <meta property="og:url" content="https://artqui.vercel.app">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Artqui | Inteligencia Artificial para Arquitectos">
+    <meta name="twitter:description" content="Capacitación y servicios de IA delegados para estudios de arquitectura.">
+    <meta name="twitter:image" content="assets/hero.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📐</text></svg>">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header class="header">
+        <div class="container navbar-container">
+            <a href="#" class="logo" id="nav-logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="logo-icon">
+                    <path d="M2 22L12 2L22 22H2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                    <path d="M12 2V22" stroke="currentColor" stroke-width="2" stroke-dasharray="2 2"/>
+                    <path d="M7 12H17" stroke="currentColor" stroke-width="1.5"/>
+                </svg>
+                <span>ARTQUI</span>
+            </a>
+            <nav class="nav-menu" id="nav-menu">
+                <a href="#servicios" class="nav-link">Servicios</a>
+                <a href="#showcase" class="nav-link">Antes/Después</a>
+                <a href="#beneficios" class="nav-link">Beneficios</a>
+                <a href="#contacto" class="nav-link">Contacto</a>
+            </nav>
+            <div class="nav-actions">
+                <a href="#contacto" class="btn btn-primary btn-sm" id="cta-header">Agendar Consulta</a>
+                <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="hero">
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <span class="badge" id="hero-badge">Nueva era de la arquitectura</span>
+                    <h1 class="hero-title">Arquitectura Exponencial con <span class="text-gradient">Inteligencia Artificial</span></h1>
+                    <p class="hero-description">
+                        Multiplica por 10 la productividad y el valor de tus proyectos. Capacitamos a tu estudio en herramientas avanzadas de IA generativa y ejecutamos por ti renders fotorrealistas y análisis automatizados.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#contacto" class="btn btn-primary">Delegar Proyecto</a>
+                        <a href="#servicios" class="btn btn-secondary">Ver Formaciones</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="image-wrapper">
+                        <img src="assets/hero.jpg" alt="Arquitectura paramétrica futurista generada por IA en Artqui" class="hero-img">
+                        <div class="glow-effect"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Servicios Section -->
+        <section class="servicios" id="servicios">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Cómo Impulsamos tu Estudio</h2>
+                    <p class="section-subtitle">Dos pilares estratégicos diseñados exclusivamente para las demandas reales del sector arquitectónico.</p>
+                </div>
+                <div class="services-grid">
+                    <!-- Card 1: Formación -->
+                    <div class="service-card reveal">
+                        <div class="service-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 14L2 9L12 4L22 9L12 14Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M2 13L12 18L22 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3 class="service-title">Formación Especializada</h3>
+                        <p class="service-desc">
+                            Capacitamos a tus arquitectos y diseñadores en las herramientas que están transformando la industria: Midjourney, Stable Diffusion, LookX, Veras y prompts avanzados para la redacción de memorias técnicas.
+                        </p>
+                        <ul class="service-features">
+                            <li>Workshops a medida para estudios de arquitectura.</li>
+                            <li>Flujos de control de diseño de boceto a modelo 3D.</li>
+                            <li>Automatización de tareas de oficina e informes técnicos.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Card 2: Servicios Delegados -->
+                    <div class="service-card reveal">
+                        <div class="service-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l4-4a1 1 0 0 0-1.4-1.4l-3.3 3.3-1.6-1.6a1 1 0 0 0-1.4 0zM12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0 10c-3.3 0-6 .8-6 2.4V26h12v-1.6c0-1.6-2.7-2.4-6-2.4z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M8 14H4a2 2 0 0 0-2 2v2M16 14h4a2 2 0 0 1 2 2v2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3 class="service-title">Servicios de IA Delegados</h3>
+                        <p class="service-desc">
+                            ¿Tu equipo no tiene tiempo para aprender o integrar nuevas tecnologías? Nosotros nos encargamos de ejecutar tus tareas críticas apoyados en nuestros pipelines avanzados de IA.
+                        </p>
+                        <ul class="service-features">
+                            <li>Visualización fotorrealista ultrarrápida (renders en horas).</li>
+                            <li>Generación masiva de opciones volumétricas y conceptuales.</li>
+                            <li>Optimización y automatización de planos y modelado BIM.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Before & After Interactive Showcase -->
+        <section class="showcase" id="showcase">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">El Poder de la IA Visual</h2>
+                    <p class="section-subtitle">Arrastra el deslizador para ver cómo transformamos un boceto lineal en un render fotorrealista de alta gama en segundos.</p>
+                </div>
+                <div class="slider-wrapper reveal">
+                    <div class="before-after-slider" id="image-slider">
+                        <!-- Imagen de Fondo (Después - Render) -->
+                        <img src="assets/render.jpg" alt="Render arquitectónico hiperrealista finalizado por IA" class="slider-image image-after">
+                        
+                        <!-- Imagen de Frente (Antes - Boceto) -->
+                        <div class="slider-before-container" id="before-container">
+                            <img src="assets/sketch.jpg" alt="Boceto lineal inicial del proyecto arquitectónico" class="slider-image image-before">
+                        </div>
+                        
+                        <!-- Barra de deslizamiento (Slider Bar) -->
+                        <div class="slider-handle" id="slider-handle" aria-label="Deslizar para comparar">
+                            <div class="handle-line"></div>
+                            <div class="handle-button">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8 5L3 12L8 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M16 5L21 12L16 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div class="handle-line"></div>
+                        </div>
+                    </div>
+                    <div class="slider-labels">
+                        <span class="label-badge label-before">Boceto Lineal</span>
+                        <span class="label-badge label-after">IA Render Final</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Beneficios Section -->
+        <section class="beneficios" id="beneficios">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Por qué elegir Artqui</h2>
+                    <p class="section-subtitle">Unimos la sensibilidad del diseño arquitectónico con la potencia de la computación generativa moderna.</p>
+                </div>
+                <div class="benefits-grid">
+                    <div class="benefit-item reveal">
+                        <div class="benefit-number">01</div>
+                        <h3 class="benefit-title">10x Más Velocidad</h3>
+                        <p class="benefit-desc">Genera y descarta opciones volumétricas y de materiales en minutos, no en días.</p>
+                    </div>
+                    <div class="benefit-item reveal">
+                        <div class="benefit-number">02</div>
+                        <h3 class="benefit-title">Enfoque Arquitectónico</h3>
+                        <p class="benefit-desc">No somos programadores genéricos; somos expertos en arquitectura que entienden tus necesidades y lenguaje técnico.</p>
+                    </div>
+                    <div class="benefit-item reveal">
+                        <div class="benefit-number">03</div>
+                        <h3 class="benefit-title">Diferenciación de Marca</h3>
+                        <p class="benefit-desc">Posiciona a tu estudio a la vanguardia tecnológica y atrae a clientes más premium.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contacto Section -->
+        <section class="contacto" id="contacto">
+            <div class="container">
+                <div class="contact-box reveal">
+                    <div class="contact-info">
+                        <h2 class="contact-title">¿Listo para transformar tu estudio?</h2>
+                        <p class="contact-desc">
+                            Déjanos tus datos y nos pondremos en contacto para analizar cómo integrar la Inteligencia Artificial en tus proyectos de forma efectiva.
+                        </p>
+                        <div class="contact-details">
+                            <div class="contact-detail-item">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                    <polyline points="22,6 12,13 2,6"/>
+                                </svg>
+                                <span>hola@artqui.com</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-form-container">
+                        <form class="contact-form" id="contact-form">
+                            <div class="form-group">
+                                <label for="form-name">Nombre completo</label>
+                                <input type="text" id="form-name" name="name" required placeholder="Tu nombre y apellido">
+                            </div>
+                            <div class="form-group">
+                                <label for="form-email">Email profesional</label>
+                                <input type="email" id="form-email" name="email" required placeholder="tu@estudio.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="form-interest">¿En qué estás interesado?</label>
+                                <select id="form-interest" name="interest" required>
+                                    <option value="" disabled selected>Selecciona una opción</option>
+                                    <option value="formacion">Formación para el equipo</option>
+                                    <option value="servicios">Servicios de IA Delegados</option>
+                                    <option value="ambos">Ambas opciones</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="form-message">Cuéntanos sobre tu estudio</label>
+                                <textarea id="form-message" name="message" rows="4" required placeholder="¿Cuáles son tus principales cuellos de botella en el diseño?"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block" id="btn-submit">Enviar Solicitud</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <a href="#" class="logo">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2 22L12 2L22 22H2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                        <path d="M12 2V22" stroke="currentColor" stroke-width="2" stroke-dasharray="2 2"/>
+                    </svg>
+                    <span>ARTQUI</span>
+                </a>
+                <p class="footer-tagline">Redefiniendo el diseño arquitectónico a través de la IA.</p>
+            </div>
+            <div class="footer-copy">
+                &copy; 2026 Artqui. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal / Dialogo de Exito Nativo -->
+    <dialog id="success-dialog" class="dialog">
+        <div class="dialog-content">
+            <div class="dialog-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="20 6 9 17 4 12"/>
+                </svg>
+            </div>
+            <h3>¡Solicitud Recibida!</h3>
+            <p>Gracias por ponerte en contacto. Nos comunicaremos contigo en menos de 24 horas para agendar nuestra primera sesión.</p>
+            <button class="btn btn-primary btn-sm" id="close-dialog">Entendido</button>
+        </div>
+    </dialog>
+
+    <script src="app.js" defer></script>
+</body>
+</html>
