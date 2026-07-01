@@ -1,169 +1,101 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // ----------------------------------------------------------------
-    // 1. Menú Móvil
-    // ----------------------------------------------------------------
-    const menuToggle = document.getElementById('menu-toggle');
-    const navMenu = document.getElementById('nav-menu');
-    const navLinks = document.querySelectorAll('.nav-link');
+  
+  // --- CONTROL DEL DESLIZADOR INTERACTIVO (SLIDER) ---
+  const container = document.getElementById('sliderContainer');
+  const handle = document.getElementById('sliderHandle');
+  const imgBefore = document.querySelector('.img-before');
 
-    if (menuToggle && navMenu) {
-        menuToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('open');
-            menuToggle.classList.toggle('active');
-            
-            // Animación sencilla del botón hamburguesa
-            const spans = menuToggle.querySelectorAll('span');
-            if (menuToggle.classList.contains('active')) {
-                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-                spans[1].style.transform = 'rotate(-45deg) translate(5px, -5px)';
-            } else {
-                spans[0].style.transform = 'none';
-                spans[1].style.transform = 'none';
-            }
-        });
+  if (container && handle && imgBefore) {
+    let isDragging = false;
 
-        // Cerrar menú al hacer clic en un enlace
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('open');
-                menuToggle.classList.remove('active');
-                const spans = menuToggle.querySelectorAll('span');
-                spans[0].style.transform = 'none';
-                spans[1].style.transform = 'none';
-            });
-        });
-    }
+    // Función para actualizar la posición del slider
+    const updateSlider = (clientX) => {
+      const rect = container.getBoundingClientRect();
+      const x = clientX - rect.left;
+      let percentage = (x / rect.width) * 100;
 
-    // ----------------------------------------------------------------
-    // 2. Deslizador Antes / Después (Before-After Image Slider)
-    // ----------------------------------------------------------------
-    const slider = document.getElementById('image-slider');
-    const beforeContainer = document.getElementById('before-container');
-    const handle = document.getElementById('slider-handle');
+      // Constreñir el porcentaje entre 0 y 100
+      if (percentage < 0) percentage = 0;
+      if (percentage > 100) percentage = 100;
 
-    if (slider && beforeContainer && handle) {
-        let isDragging = false;
+      // Mover la barra de control
+      handle.style.left = `${percentage}%`;
 
-        const updateSlider = (clientX) => {
-            const rect = slider.getBoundingClientRect();
-            // Calcular posición relativa al slider (de 0 a 1)
-            let position = (clientX - rect.left) / rect.width;
-            
-            // Limitar rangos para no salirse de la pantalla
-            if (position < 0) position = 0;
-            if (position > 1) position = 1;
+      // Recortar la imagen superior (Boceto antes) usando clip-path
+      imgBefore.style.clipPath = `polygon(0 0, ${percentage}% 0, ${percentage}% 100%, 0 100%)`;
+    };
 
-            const percentage = position * 100;
-            
-            // Actualizar interfaz
-            handle.style.left = `${percentage}%`;
-            beforeContainer.style.width = `${percentage}%`;
-        };
+    // Eventos de puntero unificados (ratón y táctil)
+    const onPointerDown = (e) => {
+      isDragging = true;
+      container.setPointerCapture(e.pointerId);
+      updateSlider(e.clientX);
+    };
 
-        // Eventos de Ratón (Desktop)
-        handle.addEventListener('mousedown', (e) => {
-            isDragging = true;
-            e.preventDefault();
-        });
+    const onPointerMove = (e) => {
+      if (!isDragging) return;
+      updateSlider(e.clientX);
+    };
 
-        window.addEventListener('mousemove', (e) => {
-            if (!isDragging) return;
-            updateSlider(e.clientX);
-        });
+    const onPointerUp = (e) => {
+      if (!isDragging) return;
+      isDragging = false;
+      container.releasePointerCapture(e.pointerId);
+    };
 
-        window.addEventListener('mouseup', () => {
-            isDragging = false;
-        });
+    // Registrar los eventos en el contenedor
+    container.addEventListener('pointerdown', onPointerDown);
+    container.addEventListener('pointermove', onPointerMove);
+    container.addEventListener('pointerup', onPointerUp);
+    container.addEventListener('pointercancel', onPointerUp);
+  }
 
-        // Eventos de Click Directo en el Slider
-        slider.addEventListener('click', (e) => {
-            if (e.target === handle || handle.contains(e.target)) return;
-            updateSlider(e.clientX);
-        });
+  // --- CONTROL DEL FORMULARIO DE CONVERSIÓN ---
+  const form = document.getElementById('diagnosticoForm');
+  const statusDiv = document.getElementById('formStatus');
 
-        // Eventos Táctiles (Móvil/Tablet)
-        handle.addEventListener('touchstart', (e) => {
-            isDragging = true;
-        }, { passive: true });
+  if (form && statusDiv) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
 
-        window.addEventListener('touchmove', (e) => {
-            if (!isDragging) return;
-            updateSlider(e.touches[0].clientX);
-        }, { passive: true });
+      // Deshabilitar botón durante el envío
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const originalBtnText = submitBtn.textContent;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Enviando solicitud...';
 
-        window.addEventListener('touchend', () => {
-            isDragging = false;
-        });
-    }
+      // Limpiar estados anteriores del estado
+      statusDiv.className = 'form-status';
+      statusDiv.textContent = '';
+      statusDiv.style.display = 'none';
 
-    // ----------------------------------------------------------------
-    // 3. Formulario de Contacto & Dialog de Éxito
-    // ----------------------------------------------------------------
-    const contactForm = document.getElementById('contact-form');
-    const successDialog = document.getElementById('success-dialog');
-    const closeDialogBtn = document.getElementById('close-dialog');
+      // Capturar datos del formulario
+      const data = {
+        nombre: document.getElementById('nombre').value,
+        email: document.getElementById('email').value,
+        estudio: document.getElementById('estudio').value,
+        tamano: document.getElementById('tamano').value,
+        mensaje: document.getElementById('mensaje').value
+      };
 
-    if (contactForm && successDialog && closeDialogBtn) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            // Simulación del envío de leads a Vercel/Servidor
-            const formData = new FormData(contactForm);
-            const data = {
-                name: formData.get('name'),
-                email: formData.get('email'),
-                interest: formData.get('interest'),
-                message: formData.get('message')
-            };
-            
-            console.log('Solicitud de contacto enviada:', data);
-            
-            // Mostrar modal de éxito
-            successDialog.showModal();
-            
-            // Resetear el formulario
-            contactForm.reset();
-        });
+      // Simulación de envío (hacia Notion/Calendly/CRM)
+      setTimeout(() => {
+        // Habilitar de nuevo el botón
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalBtnText;
 
-        // Cerrar modal
-        closeDialogBtn.addEventListener('click', () => {
-            successDialog.close();
-        });
+        // Mostrar éxito
+        statusDiv.classList.add('success');
+        statusDiv.textContent = `¡Gracias, ${data.nombre}! Hemos registrado tu solicitud. Nos pondremos en contacto contigo en el email ${data.email} en menos de 24 horas para agendar tu Sesión de Diagnóstico.`;
+        statusDiv.style.display = 'block';
 
-        // Cerrar al hacer clic en el backdrop del diálogo
-        successDialog.addEventListener('click', (e) => {
-            const rect = successDialog.getBoundingClientRect();
-            const isInDialog = (
-                rect.top <= e.clientY && e.clientY <= rect.top + rect.height &&
-                rect.left <= e.clientX && e.clientX <= rect.left + rect.width
-            );
-            if (!isInDialog) {
-                successDialog.close();
-            }
-        });
-    }
+        // Resetear el formulario
+        form.reset();
+        
+        // Scroll suave al mensaje de éxito
+        statusDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 1500);
+    });
+  }
 
-    // ----------------------------------------------------------------
-    // 4. Scroll Reveal (Efecto de aparición al hacer scroll)
-    // ----------------------------------------------------------------
-    const revealElements = document.querySelectorAll('.reveal');
-
-    if (revealElements.length > 0) {
-        const revealOnScroll = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    // Dejar de observar una vez revelado
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, {
-            threshold: 0.15,
-            rootMargin: '0px 0px -50px 0px'
-        });
-
-        revealElements.forEach(element => {
-            revealOnScroll.observe(element);
-        });
-    }
 });
