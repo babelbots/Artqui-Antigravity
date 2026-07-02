@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Artqui AI | Caso de Estudio: Plano 2D a Render 3D</title>
+  <meta name="description" content="Demostración interactiva de la conversión automatizada de un plano técnico 2D (CAD) a un render fotorrealista 3D utilizando Inteligencia Artificial.">
+  <link rel="stylesheet" href="styles.css">
+  
+  <style>
+    /* Estilos específicos para la página de caso de estudio */
+    .case-study-hero {
+      padding-top: 140px;
+      padding-bottom: 60px;
+      text-align: center;
+      position: relative;
+    }
+    
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+      transition: var(--transition-fast);
+    }
+    
+    .back-link:hover {
+      color: var(--accent);
+      transform: translateX(-4px);
+    }
+    
+    .case-study-title {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      letter-spacing: -1px;
+    }
+    
+    .case-study-subtitle {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      max-width: 800px;
+      margin: 0 auto 3rem auto;
+    }
+    
+    /* El "Tablero de Dibujo" (Drawing Board) */
+    .drawing-board-section {
+      padding-bottom: 100px;
+    }
+    
+    .drawing-board-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    
+    /* Contenedor del papel técnico */
+    .paper-sheet {
+      background-color: #FFFFFF;
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+    }
+    
+    /* Slider Vertical Especial */
+    .slider-container.vertical {
+      width: 100%;
+      aspect-ratio: 526 / 850; /* Adaptado a la proporción del plano y render */
+      max-height: 700px;
+      background-color: #FFFFFF;
+      margin: 0 auto;
+    }
+    
+    /* Aseguramos que la imagen se adapte usando contain para no deformar planos técnicos */
+    .slider-container.vertical .slider-img {
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    
+    /* Estilos de las etiquetas de papel */
+    .paper-sheet .slider-label {
+      background: rgba(10, 14, 23, 0.9);
+      border-color: var(--border-color);
+      color: var(--text-primary);
+      font-size: 0.8rem;
+    }
+    
+    .technical-details {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    
+    .tech-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 2rem;
+    }
+    
+    .tech-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    
+    .tech-card h3 span {
+      color: var(--accent);
+    }
+    
+    .tech-card p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    
+    .efficiency-badge {
+      display: inline-block;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      color: var(--accent);
+      padding: 0.25rem 0.75rem;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      margin-top: 1rem;
+    }
+    
+    /* Adaptabilidad */
+    @media (max-width: 1024px) {
+      .drawing-board-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      
+      .technical-details {
+        order: 2;
+      }
+      
+      .paper-sheet {
+        order: 1;
+        max-width: 500px;
+        margin: 0 auto;
+      }
+      
+      .case-study-title {
+        font-size: 2.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header / Navbar -->
+  <header>
+    <div class="container">
+      <a href="index.html" class="logo">
+        <span></span>Artqui AI
+      </a>
+      <nav>
+        <ul>
+          <li><a href="index.html#problema">El Dolor</a></li>
+          <li><a href="index.html#diferencial">Nuestro Enfoque</a></li>
+          <li><a href="index.html#saas">El SaaS</a></li>
+          <li><a href="index.html#diagnostico">Diagnóstico</a></li>
+        </ul>
+      </nav>
+      <a href="index.html#diagnostico" class="glow-btn">Diagnóstico Gratuito</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Sección de Caso de Estudio -->
+    <section class="case-study-hero">
+      <div class="container">
+        <a href="index.html" class="back-link">
+          ← Volver al Inicio
+        </a>
+        <h1 class="case-study-title">De Plano 2D a Render 3D en <span class="text-accent">Minutos</span></h1>
+        <p class="case-study-subtitle">Compara la precisión técnica del plano original frente al modelo tridimensional fotorrealista interpretado por nuestros algoritmos paramétricos de IA.</p>
+      </div>
+    </section>
+
+    <!-- Tablero de Comparación -->
+    <section class="drawing-board-section">
+      <div class="container">
+        <div class="drawing-board-grid">
+          
+          <!-- Detalles Técnicos del Caso -->
+          <div class="technical-details">
+            <div class="tech-card">
+              <h3><span>01.</span> Interpretación de Geometría</h3>
+              <p>Nuestro pipeline lee directamente la información vectorial del PDF original de CAD (líneas de muros, ventanas, huecos de puertas y mobiliario), interpretando de forma inteligente la escala y las jerarquías de línea para levantar la volumetría sin intervención humana.</p>
+            </div>
+            
+            <div class="tech-card">
+              <h3><span>02.</span> Amueblamiento y Texturizado</h3>
+              <p>La IA paramétrica infiere la función de cada habitación (salón, dormitorio principal, baños, balcón) a partir de los símbolos 2D y genera una propuesta espacial con texturas realistas de madera, iluminación cálida de atardecer, mobiliario moderno y vegetación.</p>
+              <div class="efficiency-badge">Ahorro estimado: 85% de tiempo de modelado</div>
+            </div>
+
+            <div class="tech-card">
+              <h3><span>03.</span> Exportación BIM Nativa</h3>
+              <p>El resultado final no es solo una imagen estática; el motor paramétrico genera un archivo estructurado IFC compatible con Revit, Archicad y software BIM para que el estudio pueda continuar con la fase técnica del proyecto.</p>
+            </div>
+          </div>
+
+          <!-- Deslizador de Papel de Plano -->
+          <div class="paper-sheet">
+            <div class="slider-container vertical">
+              <!-- Imagen 2D (Antes) -->
+              <div class="slider-img img-before" style="background-image: url('Ejemplo1/rosa_2d_plan.png');"></div>
+              <!-- Imagen 3D (Después) -->
+              <div class="slider-img img-after" style="background-image: url('Ejemplo1/rosa_3d_render.png');"></div>
+              
+              <!-- Barra de control deslizante -->
+              <div class="slider-handle">
+                <div class="slider-button">↔</div>
+              </div>
+              
+              <div class="slider-label label-before">Plano Técnico 2D</div>
+              <div class="slider-label label-after">Modelo 3D Fotorrealista</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <a href="index.html" class="logo">
+        <span></span>Artqui AI
+      </a>
+      <p>&copy; 2026 Artqui AI / Artqui Tech. Todos los derechos reservados. Eficiencia técnica y operativa mediante Inteligencia Artificial.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

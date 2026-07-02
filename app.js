@@ -1,54 +1,57 @@
 document.addEventListener('DOMContentLoaded', () => {
   
   // --- CONTROL DEL DESLIZADOR INTERACTIVO (SLIDER) ---
-  const container = document.getElementById('sliderContainer');
-  const handle = document.getElementById('sliderHandle');
-  const imgBefore = document.querySelector('.img-before');
+  const sliders = document.querySelectorAll('.slider-container');
 
-  if (container && handle && imgBefore) {
-    let isDragging = false;
+  sliders.forEach(slider => {
+    const handle = slider.querySelector('.slider-handle');
+    const imgBefore = slider.querySelector('.img-before');
 
-    // Función para actualizar la posición del slider
-    const updateSlider = (clientX) => {
-      const rect = container.getBoundingClientRect();
-      const x = clientX - rect.left;
-      let percentage = (x / rect.width) * 100;
+    if (handle && imgBefore) {
+      let isDragging = false;
 
-      // Constreñir el porcentaje entre 0 y 100
-      if (percentage < 0) percentage = 0;
-      if (percentage > 100) percentage = 100;
+      // Función para actualizar la posición del slider
+      const updateSlider = (clientX) => {
+        const rect = slider.getBoundingClientRect();
+        const x = clientX - rect.left;
+        let percentage = (x / rect.width) * 100;
 
-      // Mover la barra de control
-      handle.style.left = `${percentage}%`;
+        // Constreñir el porcentaje entre 0 y 100
+        if (percentage < 0) percentage = 0;
+        if (percentage > 100) percentage = 100;
 
-      // Recortar la imagen superior (Boceto antes) usando clip-path
-      imgBefore.style.clipPath = `polygon(0 0, ${percentage}% 0, ${percentage}% 100%, 0 100%)`;
-    };
+        // Mover la barra de control
+        handle.style.left = `${percentage}%`;
 
-    // Eventos de puntero unificados (ratón y táctil)
-    const onPointerDown = (e) => {
-      isDragging = true;
-      container.setPointerCapture(e.pointerId);
-      updateSlider(e.clientX);
-    };
+        // Recortar la imagen superior (Boceto antes) usando clip-path
+        imgBefore.style.clipPath = `polygon(0 0, ${percentage}% 0, ${percentage}% 100%, 0 100%)`;
+      };
 
-    const onPointerMove = (e) => {
-      if (!isDragging) return;
-      updateSlider(e.clientX);
-    };
+      // Eventos de puntero unificados (ratón y táctil)
+      const onPointerDown = (e) => {
+        isDragging = true;
+        slider.setPointerCapture(e.pointerId);
+        updateSlider(e.clientX);
+      };
 
-    const onPointerUp = (e) => {
-      if (!isDragging) return;
-      isDragging = false;
-      container.releasePointerCapture(e.pointerId);
-    };
+      const onPointerMove = (e) => {
+        if (!isDragging) return;
+        updateSlider(e.clientX);
+      };
 
-    // Registrar los eventos en el contenedor
-    container.addEventListener('pointerdown', onPointerDown);
-    container.addEventListener('pointermove', onPointerMove);
-    container.addEventListener('pointerup', onPointerUp);
-    container.addEventListener('pointercancel', onPointerUp);
-  }
+      const onPointerUp = (e) => {
+        if (!isDragging) return;
+        isDragging = false;
+        slider.releasePointerCapture(e.pointerId);
+      };
+
+      // Registrar los eventos en el contenedor
+      slider.addEventListener('pointerdown', onPointerDown);
+      slider.addEventListener('pointermove', onPointerMove);
+      slider.addEventListener('pointerup', onPointerUp);
+      slider.addEventListener('pointercancel', onPointerUp);
+    }
+  });
 
   // --- CONTROL DEL FORMULARIO DE CONVERSIÓN ---
   const form = document.getElementById('diagnosticoForm');
