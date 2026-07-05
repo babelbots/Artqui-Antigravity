@@ -184,29 +184,24 @@
         <div class="glass-card">
           <form id="diagnosticoForm">
             <div class="form-group">
-              <label for="nombre">Nombre Completo</label>
+              <label for="nombre">Nombre y Apellidos *</label>
               <input type="text" id="nombre" class="form-control" placeholder="Ej. Carlos Martínez" required>
             </div>
             <div class="form-group">
-              <label for="email">Correo Electrónico Profesional</label>
+              <label for="email">Email Corporativo *</label>
               <input type="email" id="email" class="form-control" placeholder="carlos@tuestudio.com" required>
             </div>
             <div class="form-group">
-              <label for="estudio">Nombre del Estudio / Empresa</label>
-              <input type="text" id="estudio" class="form-control" placeholder="Ej. Martínez Arquitectos" required>
-            </div>
-            <div class="form-group">
-              <label for="tamano">Tamaño del Estudio</label>
-              <select id="tamano" class="form-control" required>
+              <label for="interes">¿En qué está interesado tu estudio? *</label>
+              <select id="interes" class="form-control" required>
                 <option value="" disabled selected>Selecciona una opción...</option>
-                <option value="autonomo">Profesional Autónomo</option>
-                <option value="1-3">Estudio Pequeño (1-3 personas)</option>
-                <option value="4-5">Estudio Mediano (4-5 personas)</option>
-                <option value="5+">Estudio Grande (+5 personas)</option>
+                <option value="A">Queremos una auditoría e implantación de IA a medida (Formación High-Ticket)</option>
+                <option value="B">Queremos delegar procesos técnicos para que los ejecutéis con IA (Servicios)</option>
+                <option value="C">Quiero apuntarme a la lista de espera del SaaS (Normativas, 2D a 3D, Gestión)</option>
               </select>
             </div>
             <div class="form-group">
-              <label for="mensaje">Cuéntanos tu principal cuello de botella (opcional)</label>
+              <label for="mensaje">Cuéntanos brevemente el mayor cuello de botella actual en tu estudio (opcional)</label>
               <textarea id="mensaje" class="form-control" placeholder="Ej. Perdemos demasiado tiempo redactando memorias justificativas del CTE..."></textarea>
             </div>
             
@@ -215,7 +210,7 @@
               <label for="politica">Acepto la política de privacidad y autorizo a Artqui AI a contactarme para coordinar la sesión.</label>
             </div>
 
-            <button type="submit" class="glow-btn" style="width: 100%;">Solicitar Sesión de Diagnóstico</button>
+            <button type="submit" id="submitBtn" class="glow-btn" style="width: 100%;">Comenzar Ahora</button>
             
             <div id="formStatus" class="form-status"></div>
           </form>
